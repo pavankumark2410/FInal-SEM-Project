@@ -1,0 +1,31 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %} Dashboard {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+ <h1 style="margin:auto;text-align: center;padding-top: 170px;">MEDICAL IMAGE FUSION</h1>
+<br>
+<br>
+<div class="text-center">
+  <form method = "post" enctype="multipart/form-data" action="{% url 'fusion' %}">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button style="width: 100px;height:40px;font: 20px bold" type="submit">Upload</button>
+  </form></div>
+    
+    {% include "includes/footer.html" %}
+
+    </div>
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}
+
+  <script src="/static/assets/vendor/chart.js/dist/Chart.min.js"></script>
+  <script src="/static/assets/vendor/chart.js/dist/Chart.extension.js"></script>
+
+{% endblock javascripts %}

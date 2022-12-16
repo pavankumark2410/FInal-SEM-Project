@@ -1,0 +1,42 @@
+{% extends 'layouts/base-fullscreen.html' %}
+
+{% block title %} Register {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+  <!-- Page content -->
+  
+    <!-- Page content -->
+    <div class="container mt--8 pb-5">
+      <div class="row justify-content-center">
+        <div class="col-lg-5 col-md-7">
+          <div class="card bg-secondary border-0 mb-0">
+            <div class="card-header bg-transparent pb-5">
+              
+            <div class="card-body px-lg-5 py-lg-5">
+              
+              <form method = "post" enctype="multipart/form-data" action="{% url 'register' %}">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" href="{% url 'login_view' %}">Upload</button>
+            </form>
+            </div>
+          </div>
+         
+        </div>
+      </div>
+    </div>
+
+
+    <div class="container mt--8 pb-5">
+      <div class="row justify-content-center">
+    
+</div>
+</div>
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}{% endblock javascripts %}

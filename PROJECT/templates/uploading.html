@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>demo</title>
+    </head>
+    <body>
+        <form method = "post" enctype="multipart/form-data" action="{% url 'login' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" href="{% url 'dashboard' %}">Upload</button>
+        </form>
+    </body>
+</html>

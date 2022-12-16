@@ -1,0 +1,138 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block title %} Dashboard {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+<style>
+  /* Create three equal columns that floats next to each other */
+  .column {
+    float: left;
+    width: 33.33%;
+    padding: 10px;
+    height: 300px; /* Should be removed. Only for demonstration */
+  }
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }</style>
+      <div style="margin: auto;letter-spacing: 4px;" id="pdf"><div class="container">
+<div >
+  <div>
+    <div style="padding-left: 30px;" class="text-center"><button class="mybtn"   onclick="printDiv('pdf','Title')" >GENERATE REPORT</button></div>
+    
+      {#  Single Card Template:#}
+      
+<div class="row" id="pdf">
+  <br>
+  <br>
+  <div class="column" style="">
+    
+    {% for img  in writing%}
+    <br>
+        <div  class="card" style=" width: 15rem; margin: auto ;background-color: red;">
+          <img class="img" src="{{img.image.url }} " class="card-img-top" >
+          <div class="card-body">
+            <div style="display: flex; flex-direction: row" class=" text-center">
+              <h5 class="card-title" style=" margin: auto;font: bold;">IMAGE {{ forloop.counter }}</h5>
+              </div>
+            </div>
+          </div>
+          <br><br>
+          {% endfor %}
+  </div>
+  
+  <div class="column" >
+    <br><br>
+    <div  class="card" style="width: 35rem; margin: auto ;text-align: center;align-self: center;background-color: greenyellow;">
+            
+      <img class="img" src="{% static 'finalimage.jpg' %}" class="card-img-top" >
+      <div class="card-body">
+        <div style="display: flex; flex-direction: row" class=" text-center">
+          <h5 class="card-title" style=" margin: auto;font: bold;"><b>FUSED IMAGE <a href="{% url 'colouring' %}">Apply Coloring</a><br><a href="{% url 'classify_fusion' %}">classify the image</a><br><a href="{% static 'final.jpg' %}" download>detect tumors</a></b></h5>
+          
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+      
+
+        </div>
+        </div>
+      </div>
+      <div>
+
+        
+    </div>
+  </div>
+  </div>
+</div>
+
+<style>
+  
+  .mybtn{
+          border-radius:3px;
+          text-decoration:none;
+          font-family:sans-serif;
+          font-size:20px;
+          padding: 10px 20px;
+          background-color:#000000;
+          color:#fff;
+          transition-delay:.2s;
+          transition:.3s;
+          font-variant-caps:all-small-caps;
+          box-shadow:4px 3px 11px 0 #000000;
+          border-radius: 2px;
+          }
+  .mybtn:hover{
+          background-color:#fafafa;
+          color:black;
+          box-shadow:4px 3px 11px 0 #ffffff;
+          }
+  </style>
+<script type="text/javascript">
+
+  var doc = new jsPDF();
+  
+  function saveDiv(divId, title) {
+  doc.fromHTML(`<html><head><title>${title}</title></head><body>` + document.getElementById(divId).innerHTML + `</body></html>`);
+  doc.save('div.pdf');
+  }
+  
+  function printDiv(divId,
+   title) {
+  
+   let mywindow = window.open('', 'PRINT', 'height=650,width=900,top=100,left=150');
+  
+   mywindow.document.write(`<html><head><title>${title}</title>`);
+   mywindow.document.write('</head><body >');
+   mywindow.document.write(document.getElementById(divId).innerHTML);
+   mywindow.document.write('</body></html>');
+  
+   mywindow.document.close(); // necessary for IE >= 10
+   mywindow.focus(); // necessary for IE >= 10*/
+  
+   mywindow.print();
+   mywindow.close();
+  
+   return true;
+  }
+  
+  </script>
+      {% include "includes/footer.html" %}    
+{% endblock content %}
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}
+
+  <script src="/static/assets/vendor/chart.js/dist/Chart.min.js"></script>
+  <script src="/static/assets/vendor/chart.js/dist/Chart.extension.js"></script>
+
+{% endblock javascripts %}

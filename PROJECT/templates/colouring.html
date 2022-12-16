@@ -1,0 +1,109 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %} Dashboard {% endblock title %}
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+{% load static %}
+{% block content %}
+<style>
+    .main {
+        margin: auto 0 auto auto;
+    }
+
+    .container {
+
+
+
+        font-family: 'Work Sans', sans-serif;
+        font-size: 20px;
+        font-weight: 500;
+        color: #000000;
+        border-radius: 5px;
+        display: grid;
+
+    }
+
+    .wrapper {
+        width: 50%;
+        text-align: center;
+    }
+
+    input[type="range"] {
+        display: inline-block;
+        width: 80%;
+
+        margin-top: 25px;
+    }
+</style>
+<div class="container">
+    <form method="GET" action="{% url 'colouring' %}" value="{{request.GET.color}}">
+
+
+    <div class="row">
+        <div class="col"></div>
+        <div class="col">
+            {% load static %}
+            <img src="{% static 'finalimage.jpg' %}" alt="My image">
+        </div>
+
+        <div class="col"></div>
+    </div>
+    <div class="row">
+        <div class="col-2"></div>
+        <ma id="color" style="margin-top: 40px;height:100px;width : 100px;font-family: 'Work Sans', sans-serif;"> </ma>
+      
+        <div class="col-4">
+            <div class="wrapper">
+                R
+                <input type="range" min="0" max="255" value="0" id="red" oninput="colors()">
+            </div>
+            <div class="wrapper">
+                G
+                <input type="range" min="0" max="255" value="0" id="green" oninput="colors()">
+            </div>
+            <div class="wrapper">
+                B
+                <input type="range" min="0" max="255" value="0" id="blue" oninput="colors()">
+            </div>
+            <span>
+                <input type="text" id="output" name="color" hidden>
+            </span>
+            <script>
+                function colors() {
+                    var red = document.getElementById("red").value;
+                    var green = document.getElementById("green").value;
+                    var blue = document.getElementById("blue").value;
+                    document.getElementById("color").style.background =
+                        'rgb(' + red + ',' + green + ',' + blue + ')';
+                    document.getElementById("output").value = '' + red + ',' + green + ',' + blue + '';
+                }
+            </script>
+        </div>
+        <div class="col-3"><button type="submit" style="margin-top: 60px;height:40px;width : 100px;font-family: 'Work Sans'"">APPLY</button></div>
+        
+    </div>
+</div>
+
+    </form>
+    <br>
+    <br>
+    {% if a %}
+    <div class="row" style="padding-top:2px">
+        <div class="col-2"></div>
+        <div class="col-3"> <img src="{% static 'cluster1.jpg' %} " width="500px" alt="My image"></div>
+        <div class="col-2"></div>
+        <div class="col-3"> <img src="{% static 'cluster2.jpg' %}" width="500px"  alt="My image"></div>
+        <div class="col-2"></div>
+       
+       
+    
+    {% else %}
+    {% endif %}
+    <br>
+    <br>
+{% endblock content %}
+<!-- Specific JS goes HERE -->
+{% block javascripts %}
+<script src="/static/assets/vendor/chart.js/dist/Chart.min.js"></script>
+<script src="/static/assets/vendor/chart.js/dist/Chart.extension.js"></script>
+{% endblock javascripts %}

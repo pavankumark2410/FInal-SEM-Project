@@ -1,0 +1,131 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %} Dashboard {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+       <div class="text-center"  style="border: 2px solid ;margin: auto;align-items: center;" ><div class="container" class="text-center">
+        
+<div class="text-center">
+  <button class="mybtn"   onclick="printDiv('pdf','Title')">Export Reports</button></div>
+<div  style="display: flex center; flex-direction: row; flex-wrap: wrap;">
+  <div>
+      {#  Single Card Template:#}
+        <div  class="card" style="width: 20rem;padding-left: 2px; margin: 10px;text-align: center;align-self: center;">
+          <img class="img text-center" src="{{ media_url }}{{ img.image }}" class="card-img-top" >
+          <div class="card-body">
+            <div style="display: flex; flex-direction: row" class=" text-center">
+              <h5 class="card-title">Original Image</h5>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+        </div>
+      </div>
+      <div>
+
+      
+<div style="display: flex; flex-direction: row; flex-wrap: wrap" id="pdf">
+<div>
+    {#  Single Card Template:#}
+      <div class="card" style="width: 20rem; margin: 10px">
+        <img class="img" src="/media/ouput/gaussian filter.JPG" class="card-img-top" >
+        <div class="card-body">
+          <div style="display: flex; flex-direction: row" class=" text-center">
+            <h5 class="card-title">Guassian Filter</h5>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    
+  {#  Single Card Template:#}
+    <div class="card" style="width: 20rem; margin: 10px">
+      <img class="img" src="/media/ouput/greyscale.JPG" class="card-img-top" >
+      <div class="card-body">
+        <div style="display: flex; flex-direction: row" class=" text-center">
+          <h5 class="card-title">Grey Scale Filter</h5>
+          </div>
+        </div>
+        
+      </div>
+   
+    {#  Single Card Template:#}
+  <div class="card" style="width: 20rem; margin: 10px">
+    <img class="img" src="/media/ouput/img_median.JPG" class="card-img-top" >
+    <div class="card-body">
+      <div style="display: flex; flex-direction: row" class=" text-center">
+        <h5 class="card-title">Median Filter</h5>
+        </div>
+      </div>
+      
+    </div>
+    </div>
+
+  </div>
+  </div>
+</div>
+<style>
+  
+  .mybtn{
+          border-radius:3px;
+          text-decoration:none;
+          font-family:sans-serif;
+          font-size:20px;
+          padding: 10px 20px;
+          background-color:#000000;
+          color:#fff;
+          transition-delay:.2s;
+          transition:.3s;
+          font-variant-caps:all-small-caps;
+          box-shadow:4px 3px 11px 0 #000000;
+          border-radius: 2px;
+          }
+  .mybtn:hover{
+          background-color:#fafafa;
+          color:black;
+          box-shadow:4px 3px 11px 0 #ffffff;
+          }
+  </style>
+<script type="text/javascript">
+
+  var doc = new jsPDF();
+  
+  function saveDiv(divId, title) {
+  doc.fromHTML(`<html><head><title>${title}</title></head><body>` + document.getElementById(divId).innerHTML + `</body></html>`);
+  doc.save('div.pdf');
+  }
+  
+  function printDiv(divId,
+   title) {
+  
+   let mywindow = window.open('', 'PRINT', 'height=650,width=900,top=100,left=150');
+  
+   mywindow.document.write(`<html><head><title>${title}</title>`);
+   mywindow.document.write('</head><body >');
+   mywindow.document.write(document.getElementById(divId).innerHTML);
+   mywindow.document.write('</body></html>');
+  
+   mywindow.document.close(); // necessary for IE >= 10
+   mywindow.focus(); // necessary for IE >= 10*/
+  
+   mywindow.print();
+   mywindow.close();
+  
+   return true;
+  }
+  
+  </script>
+      {% include "includes/footer.html" %}    
+{% endblock content %}
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}
+
+  <script src="/static/assets/vendor/chart.js/dist/Chart.min.js"></script>
+  <script src="/static/assets/vendor/chart.js/dist/Chart.extension.js"></script>
+
+{% endblock javascripts %}
